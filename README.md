@@ -1,6 +1,3 @@
-[![Build Status on Travis](https://travis-ci.org/shazChaudhry/docker-metricbeat.svg?branch=master)](https://travis-ci.org/shazChaudhry/docker-metricbeat "Build Status on Travis")
-[![Docker Repository on Quay](https://quay.io/repository/shazchaudhry/docker-metricbeat/status "Docker Repository on Quay")](https://quay.io/repository/shazchaudhry/docker-metricbeat)
-
 #### User story
 As a member of DevOps team, I want to collect and ship metrics to Elasticsearch so that I can visualize stats in Kibana
 
@@ -13,7 +10,7 @@ The Beats are open source data shippers that you install as agents on your serve
 In this repository, the intended use case for Metricbeat is to push logs directly Elasticsearch
 
 #### Prerequisite
-* Elastic stack v6.0 is up and running
+* Elastic stack v6.6.0 is up and running
 * Elasticsearch port 9200 is open for metricbeat to send logs to
 * Metricbeat is being installed on the same server as Elasticsearch
 * Latest version of Docker is installed
@@ -26,7 +23,7 @@ Before building metricbeat image, please take a look at config/metricbeat.yml to
 ```
 docker image build \
   --rm --no-cache \
-  --tag quay.io/shazchaudhry/docker-metricbeat:6.0.0 .
+  --tag docker.io/ryandjf/docker-metricbeat:6.6.0 .
 ```
 Start the container that will forward metricbeat stats to Elasticsearch:
 ```
@@ -38,7 +35,7 @@ docker container run -d --rm \
 --volume=/var/run/docker.sock:/var/run/docker.sock \
 --volume metricbeat_data:/usr/share/metricbeat/data \
 --network=host \
-quay.io/shazchaudhry/docker-metricbeat:6.0.0 metricbeat -e -system.hostfs=/hostfs
+docker.io/ryandjf/docker-metricbeat:6.6.0 metricbeat -e -system.hostfs=/hostfs
 ```
 
 #### Test
